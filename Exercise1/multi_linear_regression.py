@@ -98,7 +98,6 @@ class LinearRegression:
 
                 self.w -= self.lr * grad_w
                 self.b -= self.lr * grad_b
-                raise NotImplementedError("Fill gradients for mini-batch SGD: grad_w, grad_b; then update w, b.")  # delete this line after implementing
                 # ====================== END TODO ============================
 
             if verbose and (ep % max(1, self.epochs // 10) == 0 or ep == 1):
@@ -121,7 +120,6 @@ class LinearRegression:
         theta = np.linalg.solve(A, b_vec) 
         self.w = theta[:-1]
         self.b = float(theta[-1])
-        raise NotImplementedError("Implement normal equation, set self.w and self.b.") # delete this line after implementing
         # ====================== END TODO ============================
 
         if verbose:
