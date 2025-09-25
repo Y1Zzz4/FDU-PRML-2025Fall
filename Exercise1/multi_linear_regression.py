@@ -132,7 +132,7 @@ class LinearRegression:
 # =========================
 def main():
     # ---- parameter ----
-    solver     = "LSE"     # "GD" or "LSE"
+    solver     = "GD"     # "GD" or "LSE"
     lr         = 5e-4     # for GD
     epochs     = 1000      # for GD
     batch_size = 32       # for GD
