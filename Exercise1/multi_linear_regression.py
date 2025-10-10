@@ -93,12 +93,11 @@ class LinearRegression:
                 m = Xb.shape[0]
 
                 # ====================== TODO (students) ======================
-                # grad_w = (Xb.T @ err) / m
-                # grad_b = err.mean()
+                grad_w = (Xb.T @ err) / m
+                grad_b = err.mean()
 
-                # self.w -= self.lr * grad_w
-                # self.b -= self.lr * grad_b
-                raise NotImplementedError("Fill gradients for mini-batch SGD: grad_w, grad_b; then update w, b.")  # delete this line after implementing
+                self.w -= self.lr * grad_w
+                self.b -= self.lr * grad_b
                 # ====================== END TODO ============================
 
             if verbose and (ep % max(1, self.epochs // 10) == 0 or ep == 1):
@@ -115,13 +114,12 @@ class LinearRegression:
         N, _ = X.shape
 
         # ====================== TODO (students) ======================
-        # Phi = np.concatenate([X, np.ones((N, 1))], axis=1) 
-        # A = Phi.T @ Phi
-        # b_vec = Phi.T @ y
-        # theta = np.linalg.solve(A, b_vec) 
-        # self.w = theta[:-1]
-        # self.b = float(theta[-1])
-        raise NotImplementedError("Implement normal equation, set self.w and self.b.") # delete this line after implementing
+        Phi = np.concatenate([X, np.ones((N, 1))], axis=1) 
+        A = Phi.T @ Phi
+        b_vec = Phi.T @ y
+        theta = np.linalg.solve(A, b_vec) 
+        self.w = theta[:-1]
+        self.b = float(theta[-1])
         # ====================== END TODO ============================
 
         if verbose:
@@ -134,7 +132,7 @@ class LinearRegression:
 # =========================
 def main():
     # ---- parameter ----
-    solver     = "LSE"     # "GD" or "LSE"
+    solver     = "GD"     # "GD" or "LSE"
     lr         = 5e-4     # for GD
     epochs     = 1000      # for GD
     batch_size = 32       # for GD

@@ -96,18 +96,17 @@ class LinearRegression:
 
                 # ====================== TODO (students) ======================
                 # Compute gradients and do one SGD step:
-                # grad_w = (err * xb).mean()
-                # grad_b = err.mean()
-                # self.w -= self.lr * grad_w
-                # self.b -= self.lr * grad_b
-                raise NotImplementedError("Fill gradients for mini-batch SGD: grad_w, grad_b; then update w, b.")  # delete this line after implementing
+                grad_w = (err * xb).mean()
+                grad_b = err.mean()
+                self.w -= self.lr * grad_w
+                self.b -= self.lr * grad_b
                 # ====================== END TODO ============================
 
             if verbose and (ep % max(1, self.epochs // 10) == 0 or ep == 1):
                 rmse = evaluate_rmse(y, self.predict(x))
                 print(f"[GD][Epoch {ep:4d}] rmse={rmse:.6f}, w={self.w:+.4f}, b={self.b:+.4f}")
 
-    def train_lse(self, x, y, lam, verbose: bool = True):
+    def train_lse(self, x, y, lam:float = 0.0,verbose: bool = True):
         """
         Closed-form (normal equation). 
         Build design matrix Phi = [x, 1] of shape (N, 2), and solve:
@@ -120,11 +119,10 @@ class LinearRegression:
         # ====================== TODO (students) ======================
         # Implement normal equation with optional ridge:
         R = np.diag([1.0, 0.0])
-        A = Phi.T @ Phi
+        A = Phi.T @ Phi + lam * R
         b_vec = Phi.T @ y
         theta = np.linalg.solve(A, b_vec)
         self.w, self.b = float(theta[0]), float(theta[1])
-        # raise NotImplementedError("Implement normal equation (ridge optional), set self.w and self.b.") # delete this line after implementing
         # ====================== END TODO ============================
 
         if verbose:
@@ -137,7 +135,7 @@ class LinearRegression:
 # =========================
 def main():
     # ---- minimal parameter block ----
-    solver = "GD"          # "GD" or "LSE"
+    solver = "LSE"          # "GD" or "LSE"
     lr = 5e-4              # for GD
     epochs = 1000           # for GD
     batch_size = 32        # for GD
