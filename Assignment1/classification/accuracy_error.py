@@ -38,10 +38,13 @@ def accuracy_score(y_true, y_pred):
     if y_true.shape[0] != y_pred.shape[0]:
         raise ValueError("y_true and y_pred must have the same length.")
     # =============== TODO (students) ===============
-
+    correct = 0
+    for i in range(len(y_true)):
+        if y_true[i] == y_pred[i]:
+            correct += 1
+    
+    return correct / len(y_true)
     # ===============================================
-    raise NotImplementedError("Implement accuracy_score")
-
 
 def mean_squared_error(y_true, y_pred):
     """mean squared error.
@@ -64,6 +67,10 @@ def mean_squared_error(y_true, y_pred):
     if y_true.shape[0] != y_pred.shape[0]:
         raise ValueError("y_true and y_pred must have the same length.")
     # =============== TODO (students) ===============
-
+    total_error = 0
+    for i in range(len(y_true)):
+        diff = y_true[i] - y_pred[i]
+        total_error += diff ** 2
+    
+    return total_error / len(y_true)
     # ===============================================
-    raise NotImplementedError("Implement mean_squared_error")

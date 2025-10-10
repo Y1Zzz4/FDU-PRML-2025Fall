@@ -59,12 +59,12 @@ class DecisionTreeClassifier(object):
         Controls the randomness of the estimator.
     """
     def __init__(self,
-                 criterion="info_gain",
-                 splitter="best",
-                 max_depth=None,
+                 criterion="gini",
+                 splitter="random",
+                 max_depth=10,
                  max_features=None,
-                 min_samples_split=2,
-                 min_impurity_split=0.0,
+                 min_samples_split=15,
+                 min_impurity_split=0.005,
                  random_state=None):
         self.criterion = criterion
         self.splitter = splitter

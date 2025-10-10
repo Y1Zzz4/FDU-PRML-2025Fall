@@ -8,7 +8,7 @@ DATA_DIR     = "./input_knn"    # 输入数据目录
 RANDOM_STATE = 42               # 随机种子
 N_SAMPLES    = 500              # 样本总数
 N_CLASSES    = 4                # 类别数 （在boundary图上会有几个色块）
-CLUSTER_STD  = 4.0              # 类内标准差（数据难度）
+CLUSTER_STD  = 8.0              # 类内标准差（数据难度）
 TEST_SIZE    = 0.25             # 测试集比例    
 VAL_SIZE     = 0.25             # 验证集比例
 # ===================================================
